@@ -1,91 +1,25 @@
-
-import java.util.*;
-class GoodMorningThread extends Thread{
-
-	public void run()
-	{
-
-		try
-		{
-			while(true)
-			{
-			System.out.println("Good morning");
-			Thread.sleep(1000);
-		
-		}
-		}
-		catch(InterruptedException e)
-		{
-			System.out.println(e);
-		}	
-			
-	
-	}
-
+class MyThread extends Thread {
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Thread: " + i);
+        }
+    }
 }
-
-class HelloThread extends Thread{
-
-	public void run()
-	{
-
-		try
-		{
-			while(true){
-			System.out.println("Hello");
-			Thread.sleep(2000);
-		}
-		}
-		catch(InterruptedException e)
-		{
-			System.out.println(e);
-		}	
-	
-	
-	}
-
+class MyThread2 implements Runnable {
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Runnable: " + i);
+        }
+    }
 }
-
-class WelcomeThread extends Thread{
-
-	public void run()
-	{
-
-		try
-		{
-			while(true){
-			System.out.println("Welcome");
-			Thread.sleep(3000);
-		}
-		}
-		catch(InterruptedException e)
-		{
-			System.out.println(e);
-		}	
-	
-	
-	}
-
-}
-
-
-
-
-
-class ThreadDemo{
-
-	public static void main(String[] args){
-		
-
-	GoodMorningThread t1=new GoodMorningThread();
-	HelloThread t2=new HelloThread();
-	WelcomeThread t3=new WelcomeThread();
-
-	t1.start();
-	t2.start();
-	t3.start();
-	
-
-	}
-
+class ThreadDemo {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        t1.setPriority(Thread.MAX_PRIORITY);
+        MyThread2 r1 = new MyThread2();
+        Thread t2 = new Thread(r1);
+        
+        t1.start();
+        t2.start();
+    }
 }
